@@ -1,0 +1,101 @@
+
+<form class="form" #userDetails="ngForm" (ngSubmit)="onsubmit()">
+                <!-- {{userDetails.value|json}} -->
+                <div class="row-content">
+                    <label for="name" >Name</label>
+                    <input type="text" class="input" id="name" name="name"
+                        placeholder="Your name.." required  [(ngModel)]=data.name/>
+                  
+                </div>
+                <div class="row-content">
+                    <label  for="profile">Profile image</label>
+                    <div class="profile-radio-content">
+                        <label>
+                            <input type="radio" id="profile1" [(ngModel)]=data.profile
+                                value="1"
+                                name="profile">
+                            <img class="profile" id="image1"
+                                src="./assets/girl1.png">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile2" [(ngModel)]=data.profile
+                                value="2"
+                                name="profile">
+                            <img class="profile" id="image2"
+                                src="./assets/girl2.png">
+                        </label>
+                        <label>
+                            <input type="radio" id="profil3" [(ngModel)]=data.profile
+                                value="3"
+                                name="profile">
+                            <img class="profile" id="image3"
+                                src="./assets/boy1.png">
+                        </label>
+                        <label> 
+                            <input type="radio" id="profile4" [(ngModel)]=data.profile
+                                value="4"
+                                name="profile">
+                            <img class="profile" id="image4"
+                                src="./assets/boy2.png">
+                        </label>
+                    </div>
+                </div>
+                <div class="row-content">
+                    <label for="gender" >Gender</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" [(ngModel)]=data.gender
+                            value="male">
+                        <label for="male" >Male</label>
+                        <input type="radio" id="female" name="gender" [(ngModel)]=data.gender
+                            value="female">
+                        <label for="female" >Female</label>
+                    </div>
+                </div>
+                <div class="row-content">
+                    <!-- department is remaining -->
+                    <label for="department" >Department</label>
+                    <div>
+                        <input type="checkbox" class="checkbox" id="hr" (click)="getVal('HR')" 
+                            name="department" value="HR">
+                        <label for="hr" >HR</label>
+                        <input type="checkbox" class="checkbox" id="sales" (click)="getVal('Sales')"
+                            name="department" value="Sales">
+                        <label for="sales" >Sales</label>
+                        <input type="checkbox" class="checkbox" id="finance" (click)="getVal('Finance')"
+                            name="department" value="Finance">
+                        <label for="finance" >Finance</label>
+                        <input type="checkbox" class="checkbox" id="engineer" (click)="getVal('Engineer')"
+                            name="department" value="Engineer">
+                        <label for="engineer" >Engineer</label>
+                        <input type="checkbox" class="checkbox"  (click)="getVal('Others')"
+                            name="department" value="Others">
+                        <label for="others" >Others</label> 
+                    </div>
+                </div>
+                <div class="row-content">
+                    <label for="salary" >Choose your salary:
+                    </label>
+                    <input type="range" class="input" name="salary" id="salary" [(ngModel)]=data.salary
+                        min="300000" max="500000" step="100" value="400000">
+                    <output class="salary-output text" for="salary">400000</output>
+                </div>
+                <div class="row-content">
+                    <label for="salary" >Choose start date:
+                    </label>
+                    <input type="date" class="input" name="startdate" [(ngModel)]=data.startDate> 
+                </div>
+                <div class="row-content">
+                    <label for="notes" >Notes</label>
+                    <textarea id="notes" class="input" name="Notes" [(ngModel)]=data.note
+                        placeholder="" style="height:100px"></textarea>
+                </div>
+                <div class="buttonParent">
+                    <a href="home.html" class="resetButton
+                        button cancelButton">Cancel</a>
+                    <div class="submit-reset">
+                        <button class="button submitButton" id="submitButton"
+                            type="submit">Submit</button>
+                        <button type="reset" class="resetButton button">Reset</button>
+                    </div>
+                </div>
+            </form>

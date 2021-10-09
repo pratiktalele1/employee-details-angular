@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  
+    <body>
+        
+        <div class="main-content">
+            <div class="header-content">
+                <div class="emp-detail-text">
+                    Employee Details <div class="emp-count">{{this.datas.length}}</div>
+                </div>
+                <a href="add.html" class="add-button" [routerLink]="['/add','0']">
+                    +Add User
+                </a>
+            </div>
+        </div>
+        <table id="table-display" class="table">
+            <tr>
+                <th>pic</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Start Date</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor='let data of datas'>
+                <td>
+                    <img src="./assets/girl1.png" *ngIf="data.profile==1" alt="">
+                    <img src="./assets/girl2.png" *ngIf="data.profile==2" alt="">
+                    <img src="./assets/boy1.png" *ngIf="data.profile==3" alt="">
+                    <img src="./assets/boy2.png" *ngIf="data.profile==4" alt="">
+                    
+                </td>
+                <td>{{data.name}}</td>
+                <td>{{data.gender}}</td>
+                <td>{{data.department}}</td>
+                <td>{{data.salary}}</td>
+                <td>{{data.startDate}}</td>
+                <td>
+                   <a class="fevcon" (click)="edit(data.empId)" > <i class="fas fa-edit"></i></a>
+                   <a class="fevcon" (click)="remove(data.empId)"> <i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        </table>
+        
+</body>
+</html>
