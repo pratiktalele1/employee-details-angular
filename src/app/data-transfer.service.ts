@@ -29,4 +29,8 @@ export class DataTransferService {
 
   }
 
+  updateById(userData:UserData,id:number): Observable <UserData[]>{
+    return this.http.put<UserData[]>(`${this.url}/${id}`,userData);
+  }
+
 }

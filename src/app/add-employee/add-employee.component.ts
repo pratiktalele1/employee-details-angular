@@ -10,17 +10,23 @@ import { UserData } from '../user-data';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  // data=new UserData();
   public getId;
-  data;
-  public datas=[];
+  data;  
   public value:any;
   
+  /**
+   * 
+   * @param sendData to load service
+   * @param router to get id from pathparameter
+   * @param nevigate to navigate to another page according to function
+   */
   constructor(private sendData:DataTransferService,private router:ActivatedRoute,private nevigate:Router) { }
 
   
+  /**
+   * loading and binding data to form accoring to pathparameter wheather it is present or not
+   */
   ngOnInit(): void {
-   
     this.getId=this.router.snapshot.paramMap.get("id");
     console.log(this.getId);
     this.data=new UserData();
@@ -34,21 +40,32 @@ export class AddEmployeeComponent implements OnInit {
         this.data.salary=this.value.salary;
         this.data.startDate=this.value.startDate;
         this.data.note=this.value.note;
+        this.data.department=this.value.department;
       }
       );
-
-      this.sendData.removeEmployee(this.getId).subscribe(data=>console.log("delete successful")); 
-
-
   }
 
+  /**
+   * sending data from html form to enrollEmployee service
+   */
   onsubmit(){
     console.log(this.data);
     this.sendData.enrollEmployee(this.data).subscribe(data=>console.log("successful"));
     this.nevigate.navigate(['home']);
   }
 
+  /**
+   * sending data from html form to updateById service
+   */
+  update(){
+    this.sendData.updateById(this.data,this.getId).subscribe(data=>console.log("data update successful"));
+    this.nevigate.navigate(['home']);
+  }
 
+  /**
+   * 
+   * @param value to assign department according to click
+   */
   getVal(value:string){
     this.data.department=value;
   }

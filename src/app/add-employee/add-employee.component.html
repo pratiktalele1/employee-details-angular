@@ -1,9 +1,9 @@
-
-<form class="form" #userDetails="ngForm" (ngSubmit)="onsubmit()">
+<!-- form to get details from user and sending to service -->
+<form class="form" #userDetails="ngForm" >
                 <!-- {{userDetails.value|json}} -->
                 <div class="row-content">
                     <label for="name" >Name</label>
-                    <input type="text" class="input" id="name" name="name"
+                    <input type="text" class="input" id="name" name="name" 
                         placeholder="Your name.." required  [(ngModel)]=data.name/>
                   
                 </div>
@@ -55,20 +55,20 @@
                     <!-- department is remaining -->
                     <label for="department" >Department</label>
                     <div>
-                        <input type="checkbox" class="checkbox" id="hr" (click)="getVal('HR')" 
-                            name="department" value="HR">
+                        <input type="checkbox" class="checkbox" id="hr" (click)="getVal('HR')"  [ngModel]="data.department=='HR'"  
+                            name="department1" value="HR">
                         <label for="hr" >HR</label>
-                        <input type="checkbox" class="checkbox" id="sales" (click)="getVal('Sales')"
-                            name="department" value="Sales">
+                        <input type="checkbox" class="checkbox" id="sales" (click)="getVal('Sales')" [ngModel]="data.department=='Sales'" 
+                            name="department2" value="Sales">
                         <label for="sales" >Sales</label>
-                        <input type="checkbox" class="checkbox" id="finance" (click)="getVal('Finance')"
-                            name="department" value="Finance">
+                        <input type="checkbox" class="checkbox" id="finance" (click)="getVal('Finance')" [ngModel]="data.department=='Finance'" 
+                            name="department3" value="Finance">
                         <label for="finance" >Finance</label>
-                        <input type="checkbox" class="checkbox" id="engineer" (click)="getVal('Engineer')"
-                            name="department" value="Engineer">
+                        <input type="checkbox" class="checkbox" id="engineer" (click)="getVal('Engineer')" [ngModel]="data.department=='Engineer'" 
+                            name="department4" value="Engineer">
                         <label for="engineer" >Engineer</label>
-                        <input type="checkbox" class="checkbox"  (click)="getVal('Others')"
-                            name="department" value="Others">
+                        <input type="checkbox" class="checkbox"  (click)="getVal('Others')" [ngModel]="data.department=='Others'"
+                            name="department5" value="Others">
                         <label for="others" >Others</label> 
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     </label>
                     <input type="range" class="input" name="salary" id="salary" [(ngModel)]=data.salary
                         min="300000" max="500000" step="100" value="400000">
-                    <output class="salary-output text" for="salary">400000</output>
+                    <output class="salary-output text" for="salary">{{data.salary}}</output>
                 </div>
                 <div class="row-content">
                     <label for="salary" >Choose start date:
@@ -90,11 +90,12 @@
                         placeholder="" style="height:100px"></textarea>
                 </div>
                 <div class="buttonParent">
-                    <a href="home.html" class="resetButton
-                        button cancelButton">Cancel</a>
+                    <a   class="resetButton 
+                        button cancelButton" routerLink="/home">Cancel</a>
                     <div class="submit-reset">
-                        <button class="button submitButton" id="submitButton"
-                            type="submit">Submit</button>
+                        <button class="button" *ngIf="this.getId!=0" (click)="update()">update</button> &nbsp;
+                        <button class="button submitButton" id="submitButton" *ngIf="this.getId==0"
+                        (click)="onsubmit()"    type="submit">Submit</button>
                         <button type="reset" class="resetButton button">Reset</button>
                     </div>
                 </div>

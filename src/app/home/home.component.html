@@ -1,19 +1,25 @@
-
-<!DOCTYPE html>
-<html lang="en">
-  
-    <body>
         
         <div class="main-content">
+            <!-- div to display heading counter searchbox and add user button -->
             <div class="header-content">
                 <div class="emp-detail-text">
                     Employee Details <div class="emp-count">{{this.datas.length}}</div>
                 </div>
-                <a href="add.html" class="add-button" [routerLink]="['/add','0']">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                      <form class="d-flex position">
+                        <input class="form-control me-2" #searchValue type="search" placeholder="Search empId" aria-label="Search">
+                        <button class="btn btn-outline-success" (click)="sendSearchValue(searchValue)" >Search</button>
+                      </form>
+                    </div>
+                  </nav>
+                  <a  class="add-button" [routerLink]="['/add','']">
                     +Add User
                 </a>
             </div>
         </div>
+
+         <!-- table to display service data -->
         <table id="table-display" class="table">
             <tr>
                 <th>pic</th>
@@ -43,6 +49,29 @@
                 </td>
             </tr>
         </table>
-        
-</body>
-</html>
+     <br>
+        <!-- card to display searched data -->
+        <div class="card text-center" *ngIf="searchData">
+            <h2>result found :</h2>
+            <div class="card-header">
+              Searched data
+            </div>
+            <div class="card-body">
+                <img src="./assets/girl1.png" *ngIf="getObj.profile==1" alt="">
+                <img src="./assets/girl2.png" *ngIf="getObj.profile==2" alt="">
+                <img src="./assets/boy1.png" *ngIf="getObj.profile==3" alt="">
+                <img src="./assets/boy2.png" *ngIf="getObj.profile==4" alt="">  
+              <h5 class="card-title">Name : {{getObj.name}}</h5>
+              <h5 class="card-title">Gender : {{getObj.gender}}</h5>
+              <h5 class="card-title">Salary : {{getObj.salary}}</h5>
+              <h5 class="card-title">StartDate : {{getObj.startDate}}</h5>
+              <h5 class="card-title">Department : {{getObj.department}}</h5>
+              
+              <button class="btn btn-success" (click)="edit(getObj.empId)">update</button> &nbsp;
+              <button class="btn btn-danger" (click)="remove(getObj.empId)">delete</button> 
+                
+            </div>
+            
+          </div>
+
+       
