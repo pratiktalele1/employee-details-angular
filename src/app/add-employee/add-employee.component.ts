@@ -11,7 +11,7 @@ import { UserData } from '../user-data';
 export class AddEmployeeComponent implements OnInit {
 
   public getId;
-  data;  
+  public data;  
   public value:any;
   
   /**
