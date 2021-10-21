@@ -10,10 +10,10 @@ import { UserData } from '../user-data';
 })
 export class HomeComponent implements OnInit {
 
-  public datas=[]
+  public employeeData=[]
   public update:number;
   public searchData=false;
-  public getObj;
+  public selectedEmployee;
   public flag=0;
 
   /**
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
    */
   ngOnInit(): void {
     this.data.getEmployees()
-    .subscribe(val => this.datas=val);
+    .subscribe(val => this.employeeData=val);
   }
 
 
@@ -58,16 +58,16 @@ export class HomeComponent implements OnInit {
   sendSearchValue(id:any){
     this.searchData=false;
 
-    this.getObj=new UserData();
-    for(let i=0;i<this.datas.length;i++){
-      if(this.datas[i].empId==id.value){
-        this.getObj.empId=this.datas[i].empId;
-        this.getObj.name=this.datas[i].name;
-        this.getObj.profile=this.datas[i].profile;
-        this.getObj.gender=this.datas[i].gender;
-        this.getObj.department=this.datas[i].department;
-        this.getObj.salary=this.datas[i].salary;
-        this.getObj.startDate=this.datas[i].startDate;
+    this.selectedEmployee=new UserData();
+    for(let i=0;i<this.employeeData.length;i++){
+      if(this.employeeData[i].empId==id.value){
+        this.selectedEmployee.empId=this.employeeData[i].empId;
+        this.selectedEmployee.name=this.employeeData[i].name;
+        this.selectedEmployee.profile=this.employeeData[i].profile;
+        this.selectedEmployee.gender=this.employeeData[i].gender;
+        this.selectedEmployee.department=this.employeeData[i].department;
+        this.selectedEmployee.salary=this.employeeData[i].salary;
+        this.selectedEmployee.startDate=this.employeeData[i].startDate;
         this.flag=1;
       }
     }
